@@ -3,11 +3,13 @@ package com.company;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) throws IOException, Exception, FileNotFoundException {
         try {
+//          Задача 1
 //          Упражнение 1 Исследовать возможности класса File по созданию файлов
 //          (пустых) и папок программой. Применение конструктора и метода.
             File file1 = new File("MyFile1.txt");
@@ -100,6 +102,59 @@ public class Main {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+//      Задача 2
+//        FileControl.addTour();
+//        FileControl.addTour();
+        int comm0 = -1;
+        Scanner sc = new Scanner(System.in);
+        while (comm0 != 0) {
+            outputMenu();
+            System.out.print("Choose variant: ");
+            comm0 = sc.nextInt();
+            System.out.println();
+            switch (comm0) {
+                case 1:
+                    FileControl.addTour();
+                    break;
+                case 2:
+                    FileControl.outputTourList();
+                    break;
+                case 3:
+                    FileControl.deleteTour();
+                    break;
+                case 4:
+                    FileControl.tourLocation();
+                    break;
+                case 5:
+                    FileControl.priceEq();
+                    break;
+                case 6:
+                    FileControl.tourCompanyList();
+                    break;
+                case 7:
+                    FileControl.priceIncrease();
+                    break;
+                case 0:
+                    System.out.println("Ending the program...");
+                    break;
+                default:
+                    System.out.println("Invalid input");
+            }
+        }
+
+    }
+
+    private static void outputMenu() {
+        System.out.println("Choose variant:");
+        System.out.println("1. Add a tour to the list");
+        System.out.println("2. Show the list of the tours");
+        System.out.println("3. Delete tour from the list");
+        System.out.println("4. Get city and country of the tour");
+        System.out.println("5. Check equality of tours prices");
+        System.out.println("6. Get tour list of one of the companies");
+        System.out.println("7. Increase tour cost by 10%");
+        System.out.println("0. End program");
 
     }
 }
