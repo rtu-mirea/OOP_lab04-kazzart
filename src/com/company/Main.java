@@ -1,15 +1,15 @@
 package com.company;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) throws IOException, Exception, FileNotFoundException {
         try {
-//          Задача 1
+//          Задание 1
 //          Упражнение 1 Исследовать возможности класса File по созданию файлов
 //          (пустых) и папок программой. Применение конструктора и метода.
             File file1 = new File("MyFile1.txt");
@@ -103,9 +103,7 @@ public class Main {
             e.printStackTrace();
         }
 
-//      Задача 2
-//        FileControl.addTour();
-//        FileControl.addTour();
+//      Задание 2
         int comm0 = -1;
         Scanner sc = new Scanner(System.in);
         while (comm0 != 0) {
@@ -143,6 +141,38 @@ public class Main {
             }
         }
 
+//      Задание 3
+//      Упражнение 1
+        first_step();
+
+//      Упражнение 2
+        second_step();
+
+//      Упражнение 3
+        third_step();
+
+//      Задание 4
+        try {
+            String file1 = "C:\\Education\\University\\OOP\\Labs\\Lab4\\Serialization.bin";
+            Scanner fileIn = new Scanner(new FileReader(file1));
+            Object one = new Object();
+            System.out.println("Info about tour: "+one.getTourName()+" "+one.getCountry()+" "+one.getCity()
+                    +" "+one.getHotelName()+" "+one.getHotelStar()+" "+one.getDays()+" "+one.getExcursionNum()
+                    +" "+one.getTourPrice()+" "+one.getTourCompany());
+            ObjectSerialization second = new ObjectSerialization("C:\\Education\\University\\OOP\\Labs\\Lab4\\Serialization.bin");
+            second.outputTour();
+            second.inputTour();
+            ObjectSerialization third = new ObjectSerialization("C:\\Education\\University\\OOP\\Labs\\Lab4\\Serialization.bin");
+            third.addToCollection();
+            System.out.println("Collection looks like this after addition of objects:");
+            third.printCollection();
+            third.outputCollection();
+            third.inputCollection();
+            System.out.println("Collection looks like this after write/read:");
+            third.printCollection();
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+        }
     }
 
     private static void outputMenu() {
@@ -155,6 +185,67 @@ public class Main {
         System.out.println("6. Get tour list of one of the companies");
         System.out.println("7. Increase tour cost by 10%");
         System.out.println("0. End program");
+
+    }
+
+
+//  Задание 3
+//  Упражнение 1
+    public static void first_step() throws IOException {
+        File file1 = new File("T1.txt");
+        File file2 = new File("T2.txt");
+        Reader R = new InputStreamReader(new FileInputStream(file1.getAbsolutePath()));
+        Writer W = new OutputStreamWriter(new FileOutputStream(file2.getAbsolutePath(), true));
+        int x;
+        try {
+            while((x = R.read()) != -1){
+                W.write((char)x);
+            }
+        } catch(IOException e) {
+        }
+    }
+
+    // Упражнение 2
+    public static void second_step() throws IOException {
+        File file1 = new File("A.txt");
+        file1.createNewFile();
+        Writer W = new OutputStreamWriter(new FileOutputStream(file1.getAbsolutePath(), true));
+        BufferedReader inb = new BufferedReader(new FileReader(file1.getAbsolutePath()), 128);
+        for (int i = 0; i < 512; i++) {
+            W.write("k");
+        }
+        File file2 = new File("B.txt");
+        file2.createNewFile();
+        BufferedWriter outb = new BufferedWriter(new FileWriter(file2.getAbsolutePath()), 128);
+        char[] buf = new char[128];
+        for (int i = 0; i < 4; i++) {
+            inb.read(buf);
+            outb.write(buf);
+            if (i != 3) {
+                outb.write("\n");
+            }
+        }
+        inb.close();
+        outb.close();
+    }
+
+    // Упражнение 3
+    private static void third_step() throws IOException {
+        File file1 = new File("A.txt");
+        file1.createNewFile();
+        BufferedReader in = new BufferedReader(new InputStreamReader(new FileInputStream(file1.getAbsolutePath()),"Cp1251"));
+        System.out.println(Charset.defaultCharset().name());
+        String line = in.readLine();
+        in.close();
+
+        in = new BufferedReader(new InputStreamReader(new FileInputStream(file1.getAbsolutePath()), StandardCharsets.UTF_8));
+        line = in.readLine();
+        in.close();
+
+    }
+
+    //  Задание 4
+    public static void task4() {
 
     }
 }
