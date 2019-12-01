@@ -14,7 +14,8 @@ public class Object {
     private String tourCompany;
     private Scanner sc = new Scanner(System.in);
 
-    Object() {}
+    Object() {
+    }
 
     Object(String tourName, String country, String city, String hotelName, int hotelStar, int days, int excursionNum, int tourPrice, String tourCompany) {
         this.tourName = tourName;
@@ -31,10 +32,11 @@ public class Object {
     public void setTourPrice() {
         System.out.print("Enter tour price: ");
         this.tourPrice = sc.nextInt();
+        sc.nextLine();
     }
 
     public void setTourName() {
-        System.out.println("Enter tour name: ");
+        System.out.print("Enter tour name: ");
         this.tourName = sc.nextLine();
     }
 
@@ -56,6 +58,7 @@ public class Object {
     public void setExcursionNum() {
         System.out.print("Enter excursions number: ");
         this.excursionNum = sc.nextInt();
+        sc.nextLine();
     }
 
     public void setDays() {
@@ -64,7 +67,7 @@ public class Object {
     }
 
     public void setCountry() {
-        System.out.println("Enter country of the tour: ");
+        System.out.print("Enter country of the tour: ");
         this.country = sc.nextLine();
     }
 
@@ -108,5 +111,5 @@ public class Object {
     public int getDays() {
         return days;
     }
-    
+
 }

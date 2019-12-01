@@ -51,9 +51,8 @@ public class FileControl {
                 current = new Tour(inT.readUTF(), inT.readUTF(), inT.readUTF(), inT.readUTF(), inT.readInt(), inT.readInt(), inT.readInt(), inT.readInt(), inT.readUTF());
                 tours.add(current);
             }
-        }catch(IOException e){
-        }
-        finally {
+        } catch(IOException e){
+        } finally {
             if (tours.size() > 0) {
                 for (int i = 0; i < tours.size(); i++) {
                     System.out.println((i + 1) + ". " + tours.get(i).getTourName());
@@ -76,9 +75,8 @@ public class FileControl {
                 current = new Tour(inT.readUTF(), inT.readUTF(), inT.readUTF(), inT.readUTF(), inT.readInt(), inT.readInt(), inT.readInt(), inT.readInt(), inT.readUTF());
                 tours.add(current);
             }
-        }catch(IOException e){
-        }
-        finally {
+        } catch(IOException e){
+        } finally {
             DataOutputStream outT = new DataOutputStream(new FileOutputStream(file1.getAbsolutePath()));
             tours.remove(n - 1);
             for (int i = 0; i < tours.size(); i++) {
@@ -112,9 +110,8 @@ public class FileControl {
                 current = new Tour(inT.readUTF(), inT.readUTF(), inT.readUTF(), inT.readUTF(), inT.readInt(), inT.readInt(), inT.readInt(), inT.readInt(), inT.readUTF());
                 tours.add(current);
             }
-        }catch(IOException e){
-        }
-        finally {
+        } catch(IOException e){
+        } finally {
             if (tours.size() > 0) {
                 for (int i = 0; i < tours.size(); i++) {
                     if (tours.get(i).getTourName().equals(target)) {
@@ -142,9 +139,8 @@ public class FileControl {
                 current = new Tour(inT.readUTF(), inT.readUTF(), inT.readUTF(), inT.readUTF(), inT.readInt(), inT.readInt(), inT.readInt(), inT.readInt(), inT.readUTF());
                 tours.add(current);
             }
-        }catch(IOException e){
-        }
-        finally {
+        } catch(IOException e){
+        } finally {
             if (target1 > 0 && target2 > 0 && target1 <= tours.size() && target2 <= tours.size()) {
                 if (tours.get(target1 - 1).getTourPrice() == tours.get(target2 - 1).getTourPrice()) {
                     System.out.println("The prices are equal");
@@ -170,9 +166,8 @@ public class FileControl {
                 current = new Tour(inT.readUTF(), inT.readUTF(), inT.readUTF(), inT.readUTF(), inT.readInt(), inT.readInt(), inT.readInt(), inT.readInt(), inT.readUTF());
                 tours.add(current);
             }
-        }catch(IOException e){
-        }
-        finally {
+        } catch(IOException e){
+        } finally {
             List<Tour> company = new ArrayList<Tour>();
             for (int i = 0; i < tours.size(); i++) {
                 if (tours.get(i).getTourCompany().equals(target)) {
@@ -199,9 +194,8 @@ public class FileControl {
                 current = new Tour(inT.readUTF(), inT.readUTF(), inT.readUTF(), inT.readUTF(), inT.readInt(), inT.readInt(), inT.readInt(), inT.readInt(), inT.readUTF());
                 tours.add(current);
             }
-        }catch(IOException e){
-        }
-        finally {
+        } catch(IOException e){
+        } finally {
             DataOutputStream outT = new DataOutputStream(new FileOutputStream(file1.getAbsolutePath()));
             for (int i = 0; i < tours.size(); i++) {
                 outT.writeUTF(tours.get(i).getTourName());
@@ -221,7 +215,7 @@ public class FileControl {
             }
             outT.flush();
             outT.close();
-            System.out.println("Tour was successfully deleted");
+            System.out.println("Tour was successfully edited");
             inT.close();
         }
     }

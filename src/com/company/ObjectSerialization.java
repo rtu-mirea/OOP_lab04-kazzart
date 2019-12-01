@@ -48,8 +48,7 @@ public class ObjectSerialization {
     void inputTour () throws IOException {
         ObjectInputStream in = new ObjectInputStream(new FileInputStream(file1));
 
-        int pts = in.readInt();
-        Tour input = new Tour(in.readUTF(), in.readUTF(), in.readUTF(), in.readUTF(), in.readInt(), in.readInt(), in.readInt(), in.readInt(), in.readUTF());
+        Object input = new Object(in.readUTF(), in.readUTF(), in.readUTF(), in.readUTF(), in.readInt(), in.readInt(), in.readInt(), in.readInt(), in.readUTF());
 
         System.out.println("Info about a test: "+input.getTourName()+" "+input.getCountry()+" "+input.getCity()
                 +" "+input.getHotelName()+" "+input.getHotelStar()+" "+input.getDays()+" "+input.getExcursionNum()
@@ -59,7 +58,7 @@ public class ObjectSerialization {
 
     public void addToCollection() {
         Scanner in = new Scanner(System.in);
-        System.out.println("How many tests you want to add?");
+        System.out.println("How many tours you want to add?");
         int num = in.nextInt();
         for (int i = 0; i < num; i++) {
             Object t = new Object();
@@ -95,12 +94,10 @@ public class ObjectSerialization {
 
     void inputCollection() throws IOException {
         ObjectInputStream in = new ObjectInputStream(new FileInputStream(file2));
-        int pts;
 
         tours.clear();
         while(true) {
             try {
-                pts = in.readInt();
                 tours.add(new Object(in.readUTF(), in.readUTF(), in.readUTF(), in.readUTF(), in.readInt(), in.readInt(), in.readInt(), in.readInt(), in.readUTF()));
             } catch (EOFException e) {
                 in.close();

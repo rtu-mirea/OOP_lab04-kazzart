@@ -8,21 +8,29 @@ import java.util.Scanner;
 
 public class ClassTextFile {
     private String file1 = "Input.txt";
-    ClassTextFile (String filePath) {
+    ClassTextFile (String file1) {
         try {
             if (!new File(file1).createNewFile())
                 System.out.println("File already exists!");
             else
                 this.file1 = file1;
         } catch (IOException e) {
-            System.err.println(e.getMessage());
         }
     }
 
-    Tour setTestInfo() throws FileNotFoundException {
+    Object setTourInfo() throws FileNotFoundException {
         Scanner inT = new Scanner(new FileReader(file1));
-        int pts = inT.nextInt();
-        return new Tour(inT.nextLine(), inT.nextLine(), inT.nextLine(), inT.nextLine(), inT.nextInt(), inT.nextInt(), inT.nextInt(), inT.nextInt(), inT.nextLine());
+        String tourName = inT.nextLine();
+        String country = inT.nextLine();
+        String city = inT.nextLine();
+        String hotelName = inT.nextLine();
+        int hotelStar = inT.nextInt();
+        int days = inT.nextInt();
+        int excursionNum = inT.nextInt();
+        int tourPrice = inT.nextInt();
+        inT.nextLine();
+        String tourCompany = inT.nextLine();
+        return new Object(tourName, country, city, hotelName, hotelStar, days, excursionNum, tourPrice, tourCompany);
     }
 
 }

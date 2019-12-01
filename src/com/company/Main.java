@@ -153,16 +153,19 @@ public class Main {
 
 //      Задание 4
         try {
-            String file1 = "C:\\Education\\University\\OOP\\Labs\\Lab4\\Serialization.bin";
-            Scanner fileIn = new Scanner(new FileReader(file1));
-            Object one = new Object();
+            String file1path = "C:\\Education\\University\\OOP\\Labs\\Lab4\\Serialization.bin";
+            File fileS = new File(file1path);
+            fileS.createNewFile();
+            Scanner fileIn = new Scanner(new FileReader(fileS));
+            ClassTextFile input = new ClassTextFile("Input.txt");
+            Object one = input.setTourInfo();
             System.out.println("Info about tour: "+one.getTourName()+" "+one.getCountry()+" "+one.getCity()
                     +" "+one.getHotelName()+" "+one.getHotelStar()+" "+one.getDays()+" "+one.getExcursionNum()
                     +" "+one.getTourPrice()+" "+one.getTourCompany());
             ObjectSerialization second = new ObjectSerialization("C:\\Education\\University\\OOP\\Labs\\Lab4\\Serialization.bin");
             second.outputTour();
             second.inputTour();
-            ObjectSerialization third = new ObjectSerialization("C:\\Education\\University\\OOP\\Labs\\Lab4\\Serialization.bin");
+            ObjectSerialization third = new ObjectSerialization("C:\\Education\\University\\OOP\\Labs\\Lab4\\SerializationCol.bin");
             third.addToCollection();
             System.out.println("Collection looks like this after addition of objects:");
             third.printCollection();
@@ -171,7 +174,6 @@ public class Main {
             System.out.println("Collection looks like this after write/read:");
             third.printCollection();
         } catch (IOException e) {
-            System.err.println(e.getMessage());
         }
     }
 
@@ -202,6 +204,8 @@ public class Main {
                 W.write((char)x);
             }
         } catch(IOException e) {
+        } finally {
+            System.out.println("Data has been written from T1.txt to T2.txt successfully");
         }
     }
 
@@ -227,6 +231,7 @@ public class Main {
         }
         inb.close();
         outb.close();
+        System.out.println("Data has been written from A.txt to B.txt successfully");
     }
 
     // Упражнение 3
@@ -241,11 +246,7 @@ public class Main {
         in = new BufferedReader(new InputStreamReader(new FileInputStream(file1.getAbsolutePath()), StandardCharsets.UTF_8));
         line = in.readLine();
         in.close();
-
+        System.out.println(line);
     }
 
-    //  Задание 4
-    public static void task4() {
-
-    }
 }
